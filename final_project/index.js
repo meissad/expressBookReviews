@@ -16,7 +16,8 @@ if(req.session.authorization) { //get the authorization object stored in the ses
     token = req.session.authorization['accessToken']; //retrieve the token from authorization object
     jwt.verify(token, "access",(err,user)=>{ //Use JWT to verify token
         if(!err){
-            req.user = user;
+            req.user = user.username;
+            //req.session.username = user.username;
             next();
         }
         else{
